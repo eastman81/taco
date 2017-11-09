@@ -4,18 +4,19 @@ var router = express.Router();
 var taco = require('../models/taco.js');
 
 router.post('/', function(req, res) {
-	taco.create(
-		['taco_name', 'devoured'],
-		[req.body.taco_name, req.body.devoured],
-		function(result) {
-			res.json({ id: result.insertId });
-		});
+	taco.create([
+		"taco_name", "devoured"
+	], [
+		req.body.taco_name, req.body.devoured
+	], function(result) {
+		res.json({ id: result.insertId });
+	});
 });
 
 router.put('/:id', function(req, res) {
-	var condition = 'id = ' + req.params.id;
+	var condition = "id = " + req.params.id;
 
-	console.log('condition', condition);
+	console.log("condition", condition);
 
 	taco.update({
 		devoured: req.body.devoured

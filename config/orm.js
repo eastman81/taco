@@ -1,5 +1,5 @@
 // Import (require) connection.js into orm.js
-var connection = require('./connection.js');
+var connection = require('../config/connection.js');
 
 // Helper function for SQL syntax
 function printQuestionMarks(num) {
@@ -40,45 +40,49 @@ function objToSql(ob) {
 
 var orm = {
 	all: function(tableInput, cb) {
-		var queryString = 'SELECT * FROM ' + tableInput + ';';
+		var queryString = "SELECT * FROM " + tableInput + ";";
 		connection.query(queryString, function(error, result) {
 			if (error) {
-				throw error
-			};
+				throw error;
+			}
 
 			cb(result);
 		});
 	},
 	create: function(table, cols, vals, cb) {
-		var queryString = 'INSERT INTO ' + table;
+		var queryString = "INSERT INTO " + table;
 
-		queryString += ' (';
+		queryString += " (";
 		queryString += cols.toString();
-		queryString += ') ';
-		queryString += 'VALUES (';
+		queryString += ") ";
+		queryString += "VALUES (";
 		queryString += printQuestionMarks(vals.length);
-		queryString += ') ';
+		queryString += ") ";
 
 		console.log(queryString);
 
 		connection.query(queryString, vals, function(error, result) {
-			if (error) throw error;
+			if (error) {
+				throw error;
+			}
 
 			cb(result);
 		});
 	},
 	update: function(table, objColVals, condition, cb) {
-		var queryString = 'UPDATE ' + table;
+		var queryString = "UPDATE " + table;
 
-		queryString += ' SET ';
+		queryString += " SET ";
 		queryString += objToSql(objColVals);
-		queryString += ' WHERE ';
+		queryString += " WHERE ";
 		queryString += condition;
 
 		console.log(queryString);
 
 		connection.query(queryString, function(error, result) {
-			if (error) throw error;
+			if (error) {
+				throw error;
+			}
 
 			cb(result);
 		});
