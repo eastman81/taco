@@ -42,9 +42,11 @@ var orm = {
 	all: function(tableInput, cb) {
 		var queryString = 'SELECT * FROM ' + tableInput + ';';
 		connection.query(queryString, function(error, result) {
-			if (error) throw error;
+			if (error) {
+				throw error
+			};
 
-			cb(results);
+			cb(result);
 		});
 	},
 	create: function(table, cols, vals, cb) {
