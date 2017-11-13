@@ -26,8 +26,8 @@ $(function() {
     event.preventDefault();
 
     var newTaco = {
-      taco_name: $("#ta").val().trim(),
-      devoured: $("[taco_name=devoured]:checked").val().trim()
+      taco_name: $("#ta").val().trim()
+      // devoured: $("[taco_name=devoured]:checked").val().trim()
     };
 
     // Send the POST request.

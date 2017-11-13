@@ -5,9 +5,9 @@ var taco = require('../models/taco.js');
 
 router.post('/', function(req, res) {
 	taco.create([
-		"taco_name", "devoured"
+		"taco_name"
 	], [
-		req.body.taco_name, req.body.devoured
+		req.body.taco_name
 	], function(result) {
 		res.json({ id: result.insertId });
 	});
